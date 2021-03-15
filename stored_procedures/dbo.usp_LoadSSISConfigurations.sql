@@ -24,6 +24,7 @@ MODIFICATION LOG:
 Ver      Date        Author           Description
 -------  ----------  ---------------  ------------------------------------------------------------------------
 1.0      11/03/2019  JJAUSSI          1. Created this process for LDS BC IT243
+1.1      03/15/2021  JJAUSSI          1. Added DFNB3 connection configuration
 
 
 
@@ -74,6 +75,19 @@ SELECT c.*
          , 'String'
           );
 
+		  -- 1.2) conn_DFNB3
+
+    INSERT INTO dbo.[SSIS Configurations](ConfigurationFilter
+                                        , ConfiguredValue
+                                        , PackagePath
+                                        , ConfiguredValueType)
+    VALUES
+          (
+           'CommonConfigurations'
+         , 'Data Source=localhost;Initial Catalog=DFNB3;Provider=SQLNCLI11;Integrated Security=SSPI;'
+         , '\Package.Variables[User::conn_DFNB3].Properties[Value]'
+         , 'String'
+          );
 
     -- 1.2) conn_DFNB
 
