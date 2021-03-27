@@ -25,6 +25,7 @@ Ver      Date        Author           Description
 -------  ----------  ---------------  ------------------------------------------------------------------------
 1.0      11/03/2019  JJAUSSI          1. Created this process for LDS BC IT243
 1.1      03/15/2021  JJAUSSI          1. Added DFNB3 connection configuration
+1.2      03/28/2021  JJAUSSI          1. Added LoadDFNB3_OT configuration
 
 
 
@@ -150,6 +151,26 @@ SELECT c.*
     VALUES
           (
            'SSIS_PDS_Template_xx'
+		 , 'C:\Users\z035330\Documents\JJAUSSI\Other\JC\projects\LDSBC\IT_243\repos\DFNB_src\txt_files\'
+         , '\Package.Variables[User::v_data_share_root].Properties[Value]'
+         , 'String'
+          );
+
+		  -- 3.2) LoadDFNB3_OT
+
+    DELETE FROM dbo.[SSIS Configurations]
+     WHERE ConfigurationFilter = 'LoadDFNB3_OT';
+	
+
+	-- 3.2.1) v_data_share_root
+
+    INSERT INTO dbo.[SSIS Configurations](ConfigurationFilter
+                                        , ConfiguredValue
+                                        , PackagePath
+                                        , ConfiguredValueType)
+    VALUES
+          (
+           'LoadDFNB3_OT'
 		 , 'C:\Users\z035330\Documents\JJAUSSI\Other\JC\projects\LDSBC\IT_243\repos\DFNB_src\txt_files\'
          , '\Package.Variables[User::v_data_share_root].Properties[Value]'
          , 'String'
