@@ -27,6 +27,10 @@ Ver      Date        Author           Description
 1.2      02/05/2021  Oliver Tragante         1. Added LoadDFNB3_OT configuration
 1.3      03/01/2021  Oliver Tragante         1. Added LoadEXM_OT configuration	
 1.4      03/01/2021  Oliver Tragante         1. Added LoadNAICSCodeHierDim_OT configuration	
+<<<<<<< HEAD
+=======
+
+>>>>>>> 99d8355e58d775874b9176a7136802b0867ad744
 RUNTIME: 
 approx 5 sec
 NOTES:  
@@ -172,10 +176,55 @@ SELECT c.*
           (
            'LoadDFNB3_OT'
 		 , 'C:\Users\Wing Yu\Desktop\LDS Business College Course\Semester 4\IT 243-01 Data Warehousing\Ensign College\repos\DFNB_src\txt_files\'
+<<<<<<< HEAD
+=======
          , '\Package.Variables[User::v_data_share_root].Properties[Value]'
          , 'String'
           );
 
+
+		  
+    -- 3.3) LoadEXM_OT
+
+    DELETE FROM dbo.[SSIS Configurations]
+     WHERE ConfigurationFilter = 'LoadEXM_OT';
+	
+
+	-- 3.3.1) v_data_share_root
+
+    INSERT INTO dbo.[SSIS Configurations](ConfigurationFilter
+                                        , ConfiguredValue
+                                        , PackagePath
+                                        , ConfiguredValueType)
+    VALUES
+          (
+           'LoadEXM_OT'
+		 , 'C:\Users\Wing Yu\Desktop\LDS Business College Course\Semester 4\IT 243-01 Data Warehousing\Ensign College\repos\EXM_wc\txt_files\'
+>>>>>>> 99d8355e58d775874b9176a7136802b0867ad744
+         , '\Package.Variables[User::v_data_share_root].Properties[Value]'
+         , 'String'
+          );
+
+		
+	-- 3.4) LoadNAICSCodeHierDim_OT
+
+    DELETE FROM dbo.[SSIS Configurations]
+     WHERE ConfigurationFilter = 'LoadNAICSCodeHierDim_OT';
+	
+
+	-- 3.4.1) v_data_share_root
+
+    INSERT INTO dbo.[SSIS Configurations](ConfigurationFilter
+                                        , ConfiguredValue
+                                        , PackagePath
+                                        , ConfiguredValueType)
+    VALUES
+          (
+           'LoadNAICSCodeHierDim_OT'
+		 , 'C:\Users\Wing Yu\Desktop\LDS Business College Course\Semester 4\IT 243-01 Data Warehousing\Ensign College\repos\DFNB_dw_OT\xls_files\'
+         , '\Package.Variables[User::v_data_share_root].Properties[Value]'
+         , 'String'
+          );
 
 		  
     -- 3.3) LoadEXM_OT
