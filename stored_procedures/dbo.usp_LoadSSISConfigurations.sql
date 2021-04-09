@@ -23,11 +23,11 @@ PURPOSE: Load the SSIS Configurations table
 MODIFICATION LOG:
 Ver      Date        Author           Description
 -------  ----------  ---------------  ------------------------------------------------------------------------
-1.0      02/05/2021  GraceChu         1. Created this process for LDS BC IT243
-1.1      02/05/2021  GraceChu         1. Added conn_DFNB3 connection configuration
-1.2      02/05/2021  GraceChu         1. Added LoadDFNB3_wc configuration
-1.3      03/01/2021  GraceChu         1. Added LoadEXM_wc configuration	
-1.4      03/01/2021  GraceChu         1. Added LoadNAICSCodeHierDim_wc configuration	
+1.0      02/05/2021  Oliver Tragante         1. Created this process for LDS BC IT243
+1.1      02/05/2021  Oliver Tragante         1. Added conn_DFNB3 connection configuration
+1.2      02/05/2021  Oliver Tragante         1. Added LoadDFNB3_OT configuration
+1.3      03/01/2021  Oliver Tragante         1. Added LoadEXM_OT configuration	
+1.4      03/01/2021  Oliver Tragante         1. Added LoadNAICSCodeHierDim_OT configuration	
 
 RUNTIME: 
 approx 5 sec
@@ -97,10 +97,10 @@ SELECT c.*
 
     -- 2) Solution Level Configurations
 
-	-- 2.1) LDSBC_IT243_wc  
+	-- 2.1) LDSBC_IT243_OT  
 	
 	DELETE FROM dbo.[SSIS Configurations]
-     WHERE ConfigurationFilter = 'LDSBC_IT243_wc';
+     WHERE ConfigurationFilter = 'LDSBC_IT243_OT';
 	
 
 	-- 2.1.1) v_data_share_root
@@ -111,7 +111,7 @@ SELECT c.*
                                         , ConfiguredValueType)
     VALUES
           (
-           'LDSBC_IT243_wc'
+           'LDSBC_IT243_OT'
 		 , 'C:\Users\Wing Yu\Desktop\LDS Business College Course\Semester 4\IT 243-01 Data Warehousing\Ensign College\repos\DFNB_src\txt_files\'
          , '\Package.Variables[User::v_data_share_root].Properties[Value]'
          , 'String'
@@ -123,10 +123,10 @@ SELECT c.*
     -- 3) Package level configurations
 
 
-    -- 3.1) SSIS_PDS_Template_wc
+    -- 3.1) SSIS_PDS_Template_OT
 
     DELETE FROM dbo.[SSIS Configurations]
-     WHERE ConfigurationFilter = 'SSIS_PDS_Template_wc';
+     WHERE ConfigurationFilter = 'SSIS_PDS_Template_OT';
 	
 
 	-- 3.1.1) v_data_share_root
@@ -137,16 +137,16 @@ SELECT c.*
                                         , ConfiguredValueType)
     VALUES
           (
-           'SSIS_PDS_Template_wc'
+           'SSIS_PDS_Template_OT'
 		 , 'C:\Users\Wing Yu\Desktop\LDS Business College Course\Semester 4\IT 243-01 Data Warehousing\Ensign College\repos\DFNB_src\txt_files\'
          , '\Package.Variables[User::v_data_share_root].Properties[Value]'
          , 'String'
           );
 
-    -- 3.2) LoadDFNB3_wc
+    -- 3.2) LoadDFNB3_OT
 
     DELETE FROM dbo.[SSIS Configurations]
-     WHERE ConfigurationFilter = 'LoadDFNB3_wc';
+     WHERE ConfigurationFilter = 'LoadDFNB3_OT';
 	
 
 	-- 3.2.1) v_data_share_root
@@ -157,7 +157,7 @@ SELECT c.*
                                         , ConfiguredValueType)
     VALUES
           (
-           'LoadDFNB3_wc'
+           'LoadDFNB3_OT'
 		 , 'C:\Users\Wing Yu\Desktop\LDS Business College Course\Semester 4\IT 243-01 Data Warehousing\Ensign College\repos\DFNB_src\txt_files\'
          , '\Package.Variables[User::v_data_share_root].Properties[Value]'
          , 'String'
@@ -165,10 +165,10 @@ SELECT c.*
 
 
 
-    -- 3.2) LoadDFNB3_wc
+    -- 3.2) LoadDFNB3_OT
 
     DELETE FROM dbo.[SSIS Configurations]
-     WHERE ConfigurationFilter = 'LoadDFNB3_wc';
+     WHERE ConfigurationFilter = 'LoadDFNB3_OT';
 	
 
 	-- 3.1.1) v_data_share_root
@@ -179,7 +179,7 @@ SELECT c.*
                                         , ConfiguredValueType)
     VALUES
           (
-           'LoadDFNB3_wc'
+           'LoadDFNB3_OT'
 		 , 'C:\Users\Wing Yu\Desktop\LDS Business College Course\Semester 4\IT 243-01 Data Warehousing\Ensign College\repos\DFNB_src\txt_files\'
          , '\Package.Variables[User::v_data_share_root].Properties[Value]'
          , 'String'
@@ -187,10 +187,10 @@ SELECT c.*
 
 
 		  
-    -- 3.3) LoadEXM_wc
+    -- 3.3) LoadEXM_OT
 
     DELETE FROM dbo.[SSIS Configurations]
-     WHERE ConfigurationFilter = 'LoadEXM_wc';
+     WHERE ConfigurationFilter = 'LoadEXM_OT';
 	
 
 	-- 3.3.1) v_data_share_root
@@ -201,17 +201,17 @@ SELECT c.*
                                         , ConfiguredValueType)
     VALUES
           (
-           'LoadEXM_wc'
+           'LoadEXM_OT'
 		 , 'C:\Users\Wing Yu\Desktop\LDS Business College Course\Semester 4\IT 243-01 Data Warehousing\Ensign College\repos\EXM_wc\txt_files\'
          , '\Package.Variables[User::v_data_share_root].Properties[Value]'
          , 'String'
           );
 
 		
-	-- 3.4) LoadNAICSCodeHierDim_wc
+	-- 3.4) LoadNAICSCodeHierDim_OT
 
     DELETE FROM dbo.[SSIS Configurations]
-     WHERE ConfigurationFilter = 'LoadNAICSCodeHierDim_wc';
+     WHERE ConfigurationFilter = 'LoadNAICSCodeHierDim_OT';
 	
 
 	-- 3.4.1) v_data_share_root
@@ -222,8 +222,8 @@ SELECT c.*
                                         , ConfiguredValueType)
     VALUES
           (
-           'LoadNAICSCodeHierDim_wc'
-		 , 'C:\Users\Wing Yu\Desktop\LDS Business College Course\Semester 4\IT 243-01 Data Warehousing\Ensign College\repos\DFNB_dw_wc\xls_files\'
+           'LoadNAICSCodeHierDim_OT'
+		 , 'C:\Users\Wing Yu\Desktop\LDS Business College Course\Semester 4\IT 243-01 Data Warehousing\Ensign College\repos\DFNB_dw_OT\xls_files\'
          , '\Package.Variables[User::v_data_share_root].Properties[Value]'
          , 'String'
           );
