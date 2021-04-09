@@ -19,43 +19,26 @@ AS
 /*****************************************************************************************************************
 NAME:    dbo.usp_LoadSSISConfigurations
 PURPOSE: Load the SSIS Configurations table
-
 MODIFICATION LOG:
 Ver      Date        Author           Description
 -------  ----------  ---------------  ------------------------------------------------------------------------
-<<<<<<< HEAD
-1.0      11/03/2019  JJAUSSI         1. Created this process for LDS BC IT243
-1.1      03/15/2021  Oliver          1. Added DFNB3 connection configuration
-1.2      03/28/2021  Oliver          1. Added LoadDFNB3_OT configuration
-1.3      03/18/2021  Oliver          1. Added LoadEXM_mv configuration
-1.4      03/28/2021  Oliver          1. Added LoadNAICSCodeHierDim_mv configuration
-=======
-1.0      11/03/2019  JJAUSSI          1. Created this process for LDS BC IT243
-1.1      03/15/2021  JJAUSSI          1. Added DFNB3 connection configuration
-1.2      03/28/2021  JJAUSSI          1. Added LoadDFNB3_OT configuration
->>>>>>> ec2fdcc73964bd7cb82dff276056e24dd18427c2
-
-
-
+1.0      02/05/2021  Oliver Tragante         1. Created this process for LDS BC IT243
+1.1      02/05/2021  Oliver Tragante         1. Added conn_DFNB3 connection configuration
+1.2      02/05/2021  Oliver Tragante         1. Added LoadDFNB3_OT configuration
+1.3      03/01/2021  Oliver Tragante         1. Added LoadEXM_OT configuration	
+1.4      03/01/2021  Oliver Tragante         1. Added LoadNAICSCodeHierDim_OT configuration	
 RUNTIME: 
 approx 5 sec
-
 NOTES:  
 Load configured variable values for these levels...
 1) System = CommonConfigurations
 2) Solution
 3) Package
-
-
 Loads configuration managers for common configuration managers used in template package
-
 Connect strings are loaded with passwords to allow for automation of SSIS ETL based packages
  
-
 Example usage...
-
 EXEC dbo.usp_LoadSSISConfigurations;
-
 SELECT c.*
   FROM dbo.[SSIS Configurations] as c;
          
@@ -84,19 +67,6 @@ SELECT c.*
          , 'String'
           );
 
-		  -- 1.2) conn_DFNB3
-
-    INSERT INTO dbo.[SSIS Configurations](ConfigurationFilter
-                                        , ConfiguredValue
-                                        , PackagePath
-                                        , ConfiguredValueType)
-    VALUES
-          (
-           'CommonConfigurations'
-         , 'Data Source=localhost;Initial Catalog=DFNB3;Provider=SQLNCLI11;Integrated Security=SSPI;'
-         , '\Package.Variables[User::conn_DFNB3].Properties[Value]'
-         , 'String'
-          );
 
     -- 1.2) conn_DFNB
 
@@ -118,10 +88,10 @@ SELECT c.*
 
     -- 2) Solution Level Configurations
 
-	-- 2.1) LDSBC_IT243_xx  
+	-- 2.1) LDSBC_IT243_OT  
 	
 	DELETE FROM dbo.[SSIS Configurations]
-     WHERE ConfigurationFilter = 'LDSBC_IT243_xx';
+     WHERE ConfigurationFilter = 'LDSBC_IT243_OT';
 	
 
 	-- 2.1.1) v_data_share_root
@@ -132,8 +102,8 @@ SELECT c.*
                                         , ConfiguredValueType)
     VALUES
           (
-           'LDSBC_IT243_xx'
-		 , 'C:\Users\z035330\Documents\JJAUSSI\Other\JC\projects\LDSBC\IT_243\repos\DFNB_src\txt_files\'
+           'LDSBC_IT243_OT'
+		 , 'C:\Users\Wing Yu\Desktop\LDS Business College Course\Semester 4\IT 243-01 Data Warehousing\Ensign College\repos\DFNB_src\txt_files\'
          , '\Package.Variables[User::v_data_share_root].Properties[Value]'
          , 'String'
           );
@@ -144,10 +114,10 @@ SELECT c.*
     -- 3) Package level configurations
 
 
-    -- 3.1) SSIS_PDS_Template_xx
+    -- 3.1) SSIS_PDS_Template_OT
 
     DELETE FROM dbo.[SSIS Configurations]
-     WHERE ConfigurationFilter = 'SSIS_PDS_Template_xx';
+     WHERE ConfigurationFilter = 'SSIS_PDS_Template_OT';
 	
 
 	-- 3.1.1) v_data_share_root
@@ -158,13 +128,13 @@ SELECT c.*
                                         , ConfiguredValueType)
     VALUES
           (
-           'SSIS_PDS_Template_xx'
-		 , 'C:\Users\z035330\Documents\JJAUSSI\Other\JC\projects\LDSBC\IT_243\repos\DFNB_src\txt_files\'
+           'SSIS_PDS_Template_OT'
+		 , 'C:\Users\Wing Yu\Desktop\LDS Business College Course\Semester 4\IT 243-01 Data Warehousing\Ensign College\repos\DFNB_src\txt_files\'
          , '\Package.Variables[User::v_data_share_root].Properties[Value]'
          , 'String'
           );
 
-		  -- 3.2) LoadDFNB3_OT
+    -- 3.2) LoadDFNB3_OT
 
     DELETE FROM dbo.[SSIS Configurations]
      WHERE ConfigurationFilter = 'LoadDFNB3_OT';
@@ -179,17 +149,17 @@ SELECT c.*
     VALUES
           (
            'LoadDFNB3_OT'
-		 , 'C:\Users\z035330\Documents\JJAUSSI\Other\JC\projects\LDSBC\IT_243\repos\DFNB_src\txt_files\'
+		 , 'C:\Users\Wing Yu\Desktop\LDS Business College Course\Semester 4\IT 243-01 Data Warehousing\Ensign College\repos\DFNB_src\txt_files\'
          , '\Package.Variables[User::v_data_share_root].Properties[Value]'
          , 'String'
           );
 
 
 
-    -- 3.2) LoadDFNB3_xx
+    -- 3.2) LoadDFNB3_OT
 
     DELETE FROM dbo.[SSIS Configurations]
-     WHERE ConfigurationFilter = 'LoadDFNB3_xx';
+     WHERE ConfigurationFilter = 'LoadDFNB3_OT';
 	
 
 	-- 3.1.1) v_data_share_root
@@ -200,15 +170,55 @@ SELECT c.*
                                         , ConfiguredValueType)
     VALUES
           (
-           'LoadDFNB3_xx'
-		 , 'C:\Users\z035330\Documents\JJAUSSI\Other\JC\projects\LDSBC\IT_243\repos\DFNB_src\txt_files\'
+           'LoadDFNB3_OT'
+		 , 'C:\Users\Wing Yu\Desktop\LDS Business College Course\Semester 4\IT 243-01 Data Warehousing\Ensign College\repos\DFNB_src\txt_files\'
          , '\Package.Variables[User::v_data_share_root].Properties[Value]'
          , 'String'
           );
 
 
+		  
+    -- 3.3) LoadEXM_OT
+
+    DELETE FROM dbo.[SSIS Configurations]
+     WHERE ConfigurationFilter = 'LoadEXM_OT';
+	
+
+	-- 3.3.1) v_data_share_root
+
+    INSERT INTO dbo.[SSIS Configurations](ConfigurationFilter
+                                        , ConfiguredValue
+                                        , PackagePath
+                                        , ConfiguredValueType)
+    VALUES
+          (
+           'LoadEXM_OT'
+		 , 'C:\Users\Wing Yu\Desktop\LDS Business College Course\Semester 4\IT 243-01 Data Warehousing\Ensign College\repos\EXM_wc\txt_files\'
+         , '\Package.Variables[User::v_data_share_root].Properties[Value]'
+         , 'String'
+          );
+
+		
+	-- 3.4) LoadNAICSCodeHierDim_OT
+
+    DELETE FROM dbo.[SSIS Configurations]
+     WHERE ConfigurationFilter = 'LoadNAICSCodeHierDim_OT';
+	
+
+	-- 3.4.1) v_data_share_root
+
+    INSERT INTO dbo.[SSIS Configurations](ConfigurationFilter
+                                        , ConfiguredValue
+                                        , PackagePath
+                                        , ConfiguredValueType)
+    VALUES
+          (
+           'LoadNAICSCodeHierDim_OT'
+		 , 'C:\Users\Wing Yu\Desktop\LDS Business College Course\Semester 4\IT 243-01 Data Warehousing\Ensign College\repos\DFNB_dw_OT\xls_files\'
+         , '\Package.Variables[User::v_data_share_root].Properties[Value]'
+         , 'String'
+          );
+
 END;
 
 GO
-
-
